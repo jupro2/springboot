@@ -1,0 +1,8 @@
+
+#spring的配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #数据库驱动
+    url: jdbc:mysql://localhost:3306/endgame
+    username: root
+    password: 123456

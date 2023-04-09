@@ -1,0 +1,77 @@
+<template>
+ <div class="el-res-menu">
+   <el-col :span="12">
+
+     <el-menu
+         style="width: 200px;min-height: calc(1000vh - 50px)"
+         default-active="2"
+         class="el-menu-vertical-demo"
+     >
+<!--       小标题！实现自动更改-->
+       <h5 class="mb-2" style="font-size: 18px;padding-top: 2px">什么院</h5>
+       <el-sub-menu index="1">
+         <template #title>
+           <el-icon><location /></el-icon>
+           <span>一楼</span>
+         </template>
+           <el-menu-item v-for="(item,key) in firstFlood" :key="item.id"  index="1-1">{{item.name}}</el-menu-item>
+       </el-sub-menu>
+
+       <el-sub-menu index="2">
+         <template #title>
+           <el-icon><location /></el-icon>
+           <span>二楼</span>
+         </template>
+         <el-menu-item v-for="(item,key) in secondFlood" :key="item.id"  index="2-1">{{item.name}}</el-menu-item>
+
+       </el-sub-menu>
+
+       <el-sub-menu index="3">
+         <template #title>
+           <el-icon><location /></el-icon>
+           <span>三楼</span>
+         </template>
+         <el-menu-item v-for="(item,key) in thirdFlood" :key="item.id"  index="2-1">{{item.name}}</el-menu-item>
+
+       </el-sub-menu>
+
+
+
+     </el-menu>
+   </el-col>
+ </div>
+</template>
+
+<script>
+export default {
+  data(){
+    return{
+      search :'',
+      firstFlood:[
+        {id:1,name:"茶泡饭"},
+        {id:2,name:"鸡排饭"},
+        {id:3,name:"掉渣饼"}
+      ],
+      secondFlood:[
+        {id:1,name:"茶泡饭"},
+        {id:2,name:"鸡排饭"},
+        {id:3,name:"掉渣饼"}
+      ],
+      thirdFlood:[
+        {id:1,name:"茶泡饭"},
+        {id:2,name:"鸡排饭"},
+        {id:3,name:"掉渣饼"}
+      ],
+      // 搜索结果
+    }
+  },
+  name: "MenuTwo",
+
+}
+
+
+</script>
+
+<style>
+
+</style>

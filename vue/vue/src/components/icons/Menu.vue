@@ -1,0 +1,94 @@
+<template>
+  <!--  菜单-->
+  <div class="menu">
+    <el-menu
+        class="el-menu-demo"
+        mode="horizontal"
+        :ellipsis="false"
+        background-color="white"
+        text-color="#222"
+        active-text-color="black"
+        style="min-width: 1300px;"
+    >
+
+      <!--        图片，无法点击-->
+      <div>
+        <img src="src/assets/school.jpg" style="height: 50px; width: 50px; color: white;padding-left: 10px;padding-right: 10px" alt="">
+      </div>
+
+
+      <div class="flex-grow" />
+      <router-link to="/" style="color: black;text-decoration: none">
+        <el-menu-item index="1">排行榜</el-menu-item>
+      </router-link>
+
+
+      <el-sub-menu index="2">
+<!--        缺少#title会丢失（餐厅）-->
+        <template #title>餐厅</template>
+        <router-link to="/About" style="color: black;text-decoration: none">
+        <el-menu-item v-for="item in restaurant">{{item.name}}</el-menu-item>
+        </router-link>
+      </el-sub-menu>
+
+<!--     搜索框-->
+      <div style="padding-left: 900px;padding-top: 10px">
+          <el-input v-modle="search" placeholder="请输入..." style="width: 200px;height: 40px;"></el-input>
+        <el-button type="primary" @click="save" >搜索</el-button>
+      </div>
+    </el-menu>
+  </div>
+
+
+</template>
+
+<script>
+import request from "@/utlis/request";
+
+export default {
+
+  data(){
+    return{
+      search :{
+          //test
+          user_id:10,
+          user_name:"ad",
+          user_ip:"123"
+
+      },
+      restaurant :[
+        {id:1,name:"雅苑"},
+        {id:2,name:"楠苑"},
+        {id:3,name:"湖苑"},
+      ],
+      // 搜索结果
+    }
+  },
+  methods:{
+      save(){
+          request.post("/messages", this.search)
+              .then(response => {
+                  console.log(response)// 在控制台中打印响应数据
+              })
+
+      }
+
+  }
+
+
+}
+
+
+
+</script>
+
+<style>
+
+/*解决el-sub-menu的min-width:200px的问题*/
+.el-menu--collapse .el-menu .el-submenu, .el-menu--popup{
+  min-width: 120px!important;
+}
+
+
+
+</style>

@@ -1,13 +1,14 @@
 package com.juguopeng.springboot.controller;
-
 import com.juguopeng.springboot.Service.CommentService;
 import com.juguopeng.springboot.bean.Comment;
+import com.juguopeng.springboot.utlis.IPUtils;
 import com.juguopeng.springboot.utlis.Result;
+import com.juguopeng.springboot.utlis.ResultUtils;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * @author 风
@@ -16,11 +17,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/comment")
 public class CommentController {
-    @Autowired
+    @Resource
     private CommentService commentService;
+    /**
+     *
+     * @param comment
+     * @param request
+     * @return success
+     * //TODO:当插入的时候，booth里面面的评论数加一；
+     */
     @PostMapping("/insert")
-    public String insertComment(@RequestBody Comment comment){
+    public Result insertComment(@RequestBody Comment comment, HttpServletRequest request){
+        comment.setUserIp(IPUtils.getIpAddr(request));
         commentService.insertComment(comment);
-        return ("插入成功");
+        return ResultUtils.success(comment);
     }
+
+
+
+
+
+
 }

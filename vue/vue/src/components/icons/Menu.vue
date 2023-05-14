@@ -9,6 +9,7 @@
         text-color="#222"
         active-text-color="black"
         style="min-width: 1300px;"
+        router
     >
 
       <!--        图片，无法点击-->
@@ -26,9 +27,11 @@
       <el-sub-menu index="2">
 <!--        缺少#title会丢失（餐厅）-->
         <template #title>餐厅</template>
-        <router-link to="/About" style="color: black;text-decoration: none">
-        <el-menu-item v-for="item in restaurant">{{item.name}}</el-menu-item>
-        </router-link>
+
+        <el-menu-item  v-for="item in dataGet" :key="item.id" :index="item.menuUrl" >
+           {{item.name}}
+        </el-menu-item>
+
       </el-sub-menu>
 
 <!--     搜索框-->
@@ -47,6 +50,15 @@ import request from "@/utlis/request";
 
 export default {
 
+    props: {
+        dataGet: {
+            type: Array,
+            required: true
+        }
+    },
+
+
+
   data(){
     return{
       search :{
@@ -54,13 +66,7 @@ export default {
           user_id:10,
           user_name:"ad",
           user_ip:"123"
-
       },
-      restaurant :[
-        {id:1,name:"雅苑"},
-        {id:2,name:"楠苑"},
-        {id:3,name:"湖苑"},
-      ],
       // 搜索结果
     }
   },
@@ -70,12 +76,8 @@ export default {
               .then(response => {
                   console.log(response)// 在控制台中打印响应数据
               })
-
       }
-
   }
-
-
 }
 
 
@@ -88,7 +90,4 @@ export default {
 .el-menu--collapse .el-menu .el-submenu, .el-menu--popup{
   min-width: 120px!important;
 }
-
-
-
 </style>

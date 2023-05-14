@@ -1,3 +1,5 @@
+
+<!--侧边栏，about界面的左边位置-->
 <template>
  <div class="el-res-menu">
    <el-col :span="12">
@@ -8,7 +10,7 @@
          class="el-menu-vertical-demo"
      >
 <!--       小标题！实现自动更改-->
-       <h5 class="mb-2" style="font-size: 18px;padding-top: 2px">什么院</h5>
+       <h5 class="mb-2" style="font-size: 18px;padding-top: 2px">{{resName}}</h5>
        <el-sub-menu index="1">
          <template #title>
            <el-icon><location /></el-icon>
@@ -31,11 +33,8 @@
            <el-icon><location /></el-icon>
            <span>三楼</span>
          </template>
-         <el-menu-item v-for="(item,key) in thirdFlood" :key="item.id"  index="2-1">{{item.name}}</el-menu-item>
-
+         <el-menu-item v-for="(item,key) in thirdFlood" :key="item.id"  index="3-1">{{item.name}}</el-menu-item>
        </el-sub-menu>
-
-
 
      </el-menu>
    </el-col>
@@ -44,8 +43,14 @@
 
 <script>
 export default {
+    props:{
+        resName:'',
+    },
+
+
   data(){
     return{
+
       search :'',
       firstFlood:[
         {id:1,name:"茶泡饭"},
@@ -66,7 +71,6 @@ export default {
     }
   },
   name: "MenuTwo",
-
 }
 
 

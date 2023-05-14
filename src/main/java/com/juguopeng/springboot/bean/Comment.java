@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -13,7 +14,6 @@ import java.util.Date;
  * @author 风
  * @Date 2023 04 2023/4/9
  */
-
 @Data
 @Builder
 @NoArgsConstructor

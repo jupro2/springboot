@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * @author 风
@@ -24,7 +26,7 @@ public class CommentController {
      * @param comment
      * @param request
      * @return success
-     * //TODO:当插入的时候，booth里面面的评论数加一；
+     * //TODO:当插入的时候，booth里面面的评论数加一；在BoothMapper中添加一个update来进行加一操作
      */
     @PostMapping("/insert")
     public Result insertComment(@RequestBody Comment comment, HttpServletRequest request){
@@ -33,6 +35,15 @@ public class CommentController {
         return ResultUtils.success(comment);
     }
 
+    /**
+     * @description 返回评论的数据
+     * @return getComment
+     */
+
+    @GetMapping("/getComment")
+    public Result getComment(){
+        return ResultUtils.success(commentService.getComment());
+    }
 
 
 

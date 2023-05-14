@@ -1,6 +1,5 @@
 <template>
-
-  <Menu/>
+  <Menu :dataGet="dataGet"/>
   <div class="common-layout">
     <el-container>
         <el-aside ><MenuTwo/></el-aside>
@@ -23,6 +22,17 @@ export default {
     MenuTwo,
     Menu,
     BodyTwo,
+  },
+
+  data(){
+      return{
+          resName:'',
+          dataGet :[
+              {id:2,name:"雅苑",menuUrl:"/About"},
+              {id:1,name:"楠苑",menuUrl: "/About"},
+              {id:3,name:"湖苑",menuUrl: "/About"},
+          ],
+      }
   }
 }
 </script>

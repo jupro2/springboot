@@ -7,7 +7,7 @@
       </el-carousel-item>
     </el-carousel>
   </div>
-
+<!--走马灯样式-->
 </template>
 
 <style>

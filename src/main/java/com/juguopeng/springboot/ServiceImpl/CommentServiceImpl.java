@@ -4,8 +4,11 @@ import com.juguopeng.springboot.Service.CommentService;
 import com.juguopeng.springboot.bean.Comment;
 import com.juguopeng.springboot.mapper.CommentMapper;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 
 /**
  * @author 风
@@ -22,5 +25,13 @@ public class CommentServiceImpl implements CommentService {
     {
         commentMapper.insertComment(comment);
     }
+
+    @Override
+    public List<String> getComment()
+    {
+        List<String> list = commentMapper.getComment();
+        return list;
+    }
+
 
 }

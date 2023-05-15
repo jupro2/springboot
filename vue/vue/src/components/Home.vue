@@ -5,6 +5,9 @@
   <div class="Carousel">
     <Carousel/>
   </div>
+  <div class="Ranking">
+      <Exercise/>
+  </div>
 
 
 </template>
@@ -13,12 +16,14 @@
 import Menu from "@/components/icons/Menu.vue";
 import Carousel from "@/components/icons/Carousel.vue";
 import BodyTwo from "@/components/icons/BodyTwo.vue";
+import Exercise from "@/components/Exercise1/Exercise1/Exercise.vue";
 export default {
   name: "Home",
   components:{
     Menu,
     Carousel,
     BodyTwo,
+      Exercise,
   },
     data(){
       return{
@@ -34,5 +39,8 @@ export default {
 </script>
 
 <style>
+.Ranking{
+    padding-left: 400px;
+}
 
 </style>

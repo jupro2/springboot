@@ -16,8 +16,11 @@
            <el-icon><location /></el-icon>
            <span>一楼</span>
          </template>
-           <el-menu-item v-for="(item,key) in firstFlood" :key="item.id"  index="1-1">{{item.name}}</el-menu-item>
+       
+          <el-menu-item v-for="(item,key) in firstFlood" :key="item.id"  index="1-1">{{item.name}}</el-menu-item>
+
        </el-sub-menu>
+           
 
        <el-sub-menu index="2">
          <template #title>
@@ -43,30 +46,26 @@
 
 <script>
 export default {
-    props:{
-        resName:'',
-    },
+  props:{
+    resName: String,
+    firstFlood: {
+            type: Array,
+            required: true
+        },
+    secondFlood: {
+            type: Array,
+            required: true
+        } ,   
+     thirdFlood:{
+            type:Array,
+            required:true
+     }   
+  },
 
 
   data(){
     return{
-
       search :'',
-      firstFlood:[
-        {id:1,name:"茶泡饭"},
-        {id:2,name:"鸡排饭"},
-        {id:3,name:"掉渣饼"}
-      ],
-      secondFlood:[
-        {id:1,name:"茶泡饭"},
-        {id:2,name:"鸡排饭"},
-        {id:3,name:"掉渣饼"}
-      ],
-      thirdFlood:[
-        {id:1,name:"茶泡饭"},
-        {id:2,name:"鸡排饭"},
-        {id:3,name:"掉渣饼"}
-      ],
       // 搜索结果
     }
   },

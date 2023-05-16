@@ -28,7 +28,7 @@
 <!--        缺少#title会丢失（餐厅）-->
         <template #title>餐厅</template>
 
-        <el-menu-item  v-for="item in dataGet" :key="item.id" :index="item.menuUrl" >
+        <el-menu-item v-for="item in dataGet" :key="item.id" :index="item.menuUrl"  @click="getresName(item.name)">
            {{item.name}}
         </el-menu-item>
 
@@ -39,6 +39,7 @@
           <el-input v-modle="search" placeholder="请输入..." style="width: 200px;height: 40px;"></el-input>
         <el-button type="primary" @click="save" >搜索</el-button>
       </div>
+
     </el-menu>
   </div>
 
@@ -76,6 +77,9 @@ export default {
               .then(response => {
                   console.log(response)// 在控制台中打印响应数据
               })
+      },
+      getresName(value){
+        this.$emit('getresname',value)
       }
   }
 }

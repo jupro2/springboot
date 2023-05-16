@@ -18,14 +18,14 @@ let w = computed(() => {
 <style scoped>
 .hot-bar {
     border-radius: 20px;
-    background-color: rgb(3, 37, 103);
+    background-color: rgb(236, 229, 230);
     text-indent: .5em;
     /* overflow: hidden; */
 }
 
 .inner {
     width: v-bind(w);
-    background: linear-gradient(to right, rgb(187, 3, 52) 50%, rgb(66, 2, 12));
+    background: linear-gradient(to right, rgb(145, 44, 161) 50%, rgb(37, 167, 196));
     border-radius: 20px;
     white-space: nowrap;
 }

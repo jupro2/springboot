@@ -54,9 +54,9 @@ let isShow = ref(true);
 .tap-wrapper {
     border-radius: 10px;
     box-sizing: border-box;
-    width: 800px;
+    width: 1200px;
     padding: 20px;
-    background-color: rgb(45, 83, 211);
+    background-color: rgb(236, 227, 232);
 }
 
 .tap-head {
@@ -78,7 +78,7 @@ let isShow = ref(true);
 }
 
 .tap-button:not(.active):hover {
-    color: rgb(187, 3, 52);
+    color: rgb(3, 107, 187);
 }
 
 .active {

@@ -2,6 +2,9 @@
   <div class="Menu">
     <Menu :dataGet="restaurant"/>
   </div>
+
+  <div style="padding-left: 600px;"><h2>hello springboot</h2></div>
+
   <div class="Carousel">
     <Carousel/>
   </div>
@@ -40,7 +43,8 @@ export default {
 
 <style>
 .Ranking{
-    padding-left: 400px;
+    padding-left: 40px;
+    padding-top: 20px;
 }
 
 </style>

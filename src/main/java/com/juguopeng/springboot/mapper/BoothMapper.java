@@ -1,9 +1,16 @@
 package com.juguopeng.springboot.mapper;
 
+import com.juguopeng.springboot.bean.Comment;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Update;
+
 /**
  * @author 风
- * @Date 2023 04 2023/4/16
- * @description  关于booth的相关sql接口
+ * @Date 2023 05 2023/5/17
  */
-public class BoothMapper {
+
+@Mapper
+public interface BoothMapper {
+    @Update("UPDATE booth SET contentNumber = contentNumber+1 where postId = #{postId}")
+    void updateCommentNum(Comment comment);
 }

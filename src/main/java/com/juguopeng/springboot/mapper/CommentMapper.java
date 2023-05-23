@@ -3,6 +3,7 @@ package com.juguopeng.springboot.mapper;
 import com.juguopeng.springboot.bean.Comment;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public interface CommentMapper {
      */
 
     @Insert("INSERT INTO comment(id,userIp,postId,content,createdTime) VALUES (#{id},#{userIp},#{postId},#{content},#{createdTime})")
-    void insertComment(Comment comment);
+    @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
+    int insertComment(Comment comment);
 
 
     @Select("SELECT content FROM comment")

@@ -1,15 +1,15 @@
 package com.juguopeng.springboot.controller;
+import com.juguopeng.springboot.Service.BoothService;
 import com.juguopeng.springboot.Service.CommentService;
 import com.juguopeng.springboot.bean.Comment;
 import com.juguopeng.springboot.utlis.IPUtils;
 import com.juguopeng.springboot.utlis.Result;
+import com.juguopeng.springboot.utlis.ResultEnum;
 import com.juguopeng.springboot.utlis.ResultUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 /**
@@ -21,19 +21,32 @@ import java.util.List;
 public class CommentController {
     @Resource
     private CommentService commentService;
+    @Resource
+    private BoothService boothService;
     /**
      *
      * @param comment
      * @param request
      * @return success
-     * //TODO:当插入的时候，booth里面面的评论数加一；在BoothMapper中添加一个update来进行加一操作
      */
     @PostMapping("/insert")
     public Result insertComment(@RequestBody Comment comment, HttpServletRequest request){
         comment.setUserIp(IPUtils.getIpAddr(request));
-        commentService.insertComment(comment);
-        return ResultUtils.success(comment);
+        try{
+            int insertRes=commentService.insertComment(comment);
+            if(insertRes>0){
+                boothService.updateCommentNum(comment);
+                return ResultUtils.success(comment);
+            }else {
+                return ResultUtils.error(ResultEnum.USER_IS_EXISTS.getCode(), ResultEnum.USER_IS_EXISTS.getMsg());
+            }
+        }catch (DuplicateKeyException e) {
+            return ResultUtils.error(ResultEnum.USER_IS_EXISTS.getCode(), ResultEnum.USER_IS_EXISTS.getMsg());
+        } catch (Exception e){
+            return ResultUtils.error(ResultEnum.UNKNOWN_ERROR.getCode(), ResultEnum.UNKNOWN_ERROR.getMsg());
+        }
     }
+
 
     /**
      * @description 返回评论的数据
@@ -44,8 +57,6 @@ public class CommentController {
     public Result getComment(){
         return ResultUtils.success(commentService.getComment());
     }
-
-
 
 
 

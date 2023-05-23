@@ -21,16 +21,15 @@ public class CommentServiceImpl implements CommentService {
     @Resource
     private CommentMapper commentMapper;
     @Override
-    public void insertComment(Comment comment)
+    public int insertComment(Comment comment)
     {
-        commentMapper.insertComment(comment);
+        return commentMapper.insertComment(comment);
     }
 
     @Override
     public List<String> getComment()
     {
-        List<String> list = commentMapper.getComment();
-        return list;
+        return commentMapper.getComment();
     }
 
 

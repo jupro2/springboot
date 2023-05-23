@@ -1,6 +1,7 @@
 package com.juguopeng.springboot.Service;
 
 import com.juguopeng.springboot.bean.Comment;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface CommentService {
      * @description 插入评论
      * @param comment
      */
-    void insertComment(Comment comment);
+    int insertComment(Comment comment);
 
     /**
      * @description  获取评论

@@ -23,6 +23,7 @@ public interface CommentMapper {
     int insertComment(Comment comment);
 
 
+
     @Select("SELECT content FROM comment")
     List<String> getComment();
 

@@ -2,14 +2,18 @@ package com.juguopeng.springboot.controller;
 import com.juguopeng.springboot.Service.BoothService;
 import com.juguopeng.springboot.Service.CommentService;
 import com.juguopeng.springboot.bean.Comment;
+import com.juguopeng.springboot.interceptor.SensitiveWordInterceptor;
 import com.juguopeng.springboot.utlis.IPUtils;
 import com.juguopeng.springboot.utlis.Result;
 import com.juguopeng.springboot.utlis.ResultEnum;
 import com.juguopeng.springboot.utlis.ResultUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
 
 /**
@@ -23,6 +27,9 @@ public class CommentController {
     private CommentService commentService;
     @Resource
     private BoothService boothService;
+
+    @Autowired
+    private SensitiveWordInterceptor sensitiveWordInterceptor;
     /**
      *
      * @param comment

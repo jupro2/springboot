@@ -1,4 +1,5 @@
 package com.juguopeng.springboot.controller;
+import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
 import com.juguopeng.springboot.Service.BoothService;
 import com.juguopeng.springboot.Service.CommentService;
 import com.juguopeng.springboot.bean.Comment;
@@ -12,8 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
+
+import java.util.Date;
 
 
 /**
@@ -39,6 +40,13 @@ public class CommentController {
     @PostMapping("/insert")
     public Result insertComment(@RequestBody Comment comment, HttpServletRequest request){
         comment.setUserIp(IPUtils.getIpAddr(request));
+        long timestamp = request.getDateHeader("Date");
+        Date sendTime = new Date(timestamp);
+        comment.setCreatedTime(sendTime);
+
+        if(SensitiveWordHelper.contains(comment.getContent())){
+            return ResultUtils.error(ResultEnum.SENSITIVE_DATA.getCode(), ResultEnum.SENSITIVE_DATA.getMsg());
+        }
         try{
             int insertRes=commentService.insertComment(comment);
             if(insertRes>0){
@@ -64,7 +72,6 @@ public class CommentController {
     public Result getComment(){
         return ResultUtils.success(commentService.getComment());
     }
-
 
 
 }

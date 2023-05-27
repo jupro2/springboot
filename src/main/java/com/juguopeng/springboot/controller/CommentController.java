@@ -8,12 +8,11 @@ import com.juguopeng.springboot.utlis.IPUtils;
 import com.juguopeng.springboot.utlis.Result;
 import com.juguopeng.springboot.utlis.ResultEnum;
 import com.juguopeng.springboot.utlis.ResultUtils;
+import io.micrometer.common.util.StringUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 
 
@@ -38,29 +37,29 @@ public class CommentController {
      * @return success
      */
     @PostMapping("/insert")
-    public Result insertComment(@RequestBody Comment comment, HttpServletRequest request){
+    public Result insertComment(@RequestBody Comment comment, HttpServletRequest request) {
         comment.setUserIp(IPUtils.getIpAddr(request));
         long timestamp = request.getDateHeader("Date");
         Date sendTime = new Date(timestamp);
         comment.setCreatedTime(sendTime);
 
-        if(SensitiveWordHelper.contains(comment.getContent())){
+        if (containsSensitiveWord(comment.getContent())) {
             return ResultUtils.error(ResultEnum.SENSITIVE_DATA.getCode(), ResultEnum.SENSITIVE_DATA.getMsg());
         }
-        try{
-            int insertRes=commentService.insertComment(comment);
-            if(insertRes>0){
-                boothService.updateCommentNum(comment);
-                return ResultUtils.success(comment);
-            }else {
-                return ResultUtils.error(ResultEnum.USER_IS_EXISTS.getCode(), ResultEnum.USER_IS_EXISTS.getMsg());
-            }
-        }catch (DuplicateKeyException e) {
+        if (StringUtils.isEmpty(comment.getContent())) {
+            return ResultUtils.error(ResultEnum.DATA_IS_NULL.getCode(), ResultEnum.DATA_IS_NULL.getMsg());
+        }
+
+
+        int insertRes = commentService.insertComment(comment);
+        if (insertRes > 0) {
+            boothService.updateCommentNum(comment);
+            return ResultUtils.success(comment);
+        } else {
             return ResultUtils.error(ResultEnum.USER_IS_EXISTS.getCode(), ResultEnum.USER_IS_EXISTS.getMsg());
-        } catch (Exception e){
-            return ResultUtils.error(ResultEnum.UNKNOWN_ERROR.getCode(), ResultEnum.UNKNOWN_ERROR.getMsg());
         }
     }
+
 
 
     /**
@@ -73,5 +72,19 @@ public class CommentController {
         return ResultUtils.success(commentService.getComment());
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    private boolean containsSensitiveWord(String content) {
+        return SensitiveWordHelper.contains(content);
+    }
 
 }

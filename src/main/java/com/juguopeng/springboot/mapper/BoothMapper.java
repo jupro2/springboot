@@ -13,4 +13,7 @@ import org.apache.ibatis.annotations.Update;
 public interface BoothMapper {
     @Update("UPDATE booth SET contentNumber = contentNumber+1 where postId = #{postId}")
     void updateCommentNum(Comment comment);
+
+    @Update("UPDATE booth SET pickNumber = pickNumber + #{pickNumber} where postId = #{postId}")
+    void updatePickNum(int pickNumber,int postId);
 }

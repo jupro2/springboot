@@ -20,4 +20,9 @@ public class BoothServiceImpl implements BoothService {
     public void updateCommentNum(Comment comment) {
         boothMapper.updateCommentNum(comment);
     }
+
+    @Override
+    public void updatePickNum(int pickNumber, int postId) {
+        boothMapper.updatePickNum(pickNumber,postId);
+    }
 }

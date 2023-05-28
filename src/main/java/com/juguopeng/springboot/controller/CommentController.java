@@ -1,9 +1,10 @@
 package com.juguopeng.springboot.controller;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
 import com.juguopeng.springboot.Service.BoothService;
 import com.juguopeng.springboot.Service.CommentService;
+import com.juguopeng.springboot.bean.Booth;
 import com.juguopeng.springboot.bean.Comment;
-import com.juguopeng.springboot.interceptor.SensitiveWordInterceptor;
 import com.juguopeng.springboot.utlis.IPUtils;
 import com.juguopeng.springboot.utlis.Result;
 import com.juguopeng.springboot.utlis.ResultEnum;
@@ -11,8 +12,10 @@ import com.juguopeng.springboot.utlis.ResultUtils;
 import io.micrometer.common.util.StringUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.Date;
 
 
@@ -28,8 +31,7 @@ public class CommentController {
     @Resource
     private BoothService boothService;
 
-    @Autowired
-    private SensitiveWordInterceptor sensitiveWordInterceptor;
+
     /**
      *
      * @param comment
@@ -49,7 +51,6 @@ public class CommentController {
         if (StringUtils.isEmpty(comment.getContent())) {
             return ResultUtils.error(ResultEnum.DATA_IS_NULL.getCode(), ResultEnum.DATA_IS_NULL.getMsg());
         }
-
 
         int insertRes = commentService.insertComment(comment);
         if (insertRes > 0) {

@@ -12,5 +12,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(new SensitiveWordInterceptor()).addPathPatterns("/comment/insert");
+        registry.addInterceptor(new IPInterceptor()).addPathPatterns("/comment/insert");
     }
 }

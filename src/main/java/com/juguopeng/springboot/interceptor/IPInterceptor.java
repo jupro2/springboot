@@ -46,7 +46,6 @@ public class IPInterceptor implements HandlerInterceptor {
 
         // 更新缓存中的时间戳
         ipCache.put(ip, System.currentTimeMillis());
-
         return true;
     }
 }

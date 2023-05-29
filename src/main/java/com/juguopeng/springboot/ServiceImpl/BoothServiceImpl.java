@@ -1,11 +1,14 @@
 package com.juguopeng.springboot.ServiceImpl;
 
 import com.juguopeng.springboot.Service.BoothService;
+import com.juguopeng.springboot.bean.Booth;
 import com.juguopeng.springboot.bean.Comment;
 import com.juguopeng.springboot.mapper.BoothMapper;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author 风
@@ -25,4 +28,11 @@ public class BoothServiceImpl implements BoothService {
     public void updatePickNum(int pickNumber, int postId) {
         boothMapper.updatePickNum(pickNumber,postId);
     }
+
+    @Override
+    public List<Booth> getRanking() {
+        return boothMapper.getRanking();
+    }
+
+
 }

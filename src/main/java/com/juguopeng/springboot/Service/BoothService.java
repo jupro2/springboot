@@ -1,7 +1,10 @@
 package com.juguopeng.springboot.Service;
 
+import com.juguopeng.springboot.bean.Booth;
 import com.juguopeng.springboot.bean.Comment;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author 风
@@ -22,4 +25,6 @@ public interface BoothService {
      * @description  进行点赞的更新
      */
     void updatePickNum(int pickNumber,int postId);
+
+    List<Booth> getRanking();
 }

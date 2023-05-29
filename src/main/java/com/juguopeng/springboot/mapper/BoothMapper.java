@@ -1,8 +1,12 @@
 package com.juguopeng.springboot.mapper;
 
+import com.juguopeng.springboot.bean.Booth;
 import com.juguopeng.springboot.bean.Comment;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
  * @author 风
@@ -16,4 +20,8 @@ public interface BoothMapper {
 
     @Update("UPDATE booth SET pickNumber = pickNumber + #{pickNumber} where postId = #{postId}")
     void updatePickNum(int pickNumber,int postId);
+
+    @Select("SELECT * FROM booth ORDER BY pickNumber DESC")
+    List<Booth> getRanking();
+
 }

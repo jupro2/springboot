@@ -13,9 +13,6 @@ import io.micrometer.common.util.StringUtils;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.Date;
 
 
@@ -36,7 +33,7 @@ public class CommentController {
      *
      * @param comment
      * @param request
-     * @return success
+     * @description 进行评论的插入功能
      */
     @PostMapping("/insert")
     public Result insertComment(@RequestBody Comment comment, HttpServletRequest request) {
@@ -72,13 +69,6 @@ public class CommentController {
     public Result getComment(){
         return ResultUtils.success(commentService.getComment());
     }
-
-
-
-
-
-
-
 
 
 

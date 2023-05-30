@@ -68,16 +68,27 @@ export default {
           user_name:"ad",
           user_ip:"123"
       },
+      test:{
+        "id": "",
+        "content": "日本",
+        "userIp": "",
+        "postId": "1",
+        "createdTime": ""
+      }
       // 搜索结果
     }
   },
   methods:{
       save(){
-          request.post("/messages", this.search)
-              .then(response => {
-                  console.log(response)// 在控制台中打印响应数据
-              })
+        request.post("/comment/insert", this.test)
+            .then(response => {
+              console.log(response); // 在控制台中打印响应数据
+            })
+            .catch(error => {
+              console.error(error); // 在控制台中打印错误信息
+            });
       },
+    //用于向父组件传递值
       getresName(value){
         this.$emit('getresname',value)
       }

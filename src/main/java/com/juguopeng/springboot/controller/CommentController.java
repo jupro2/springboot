@@ -1,10 +1,9 @@
 package com.juguopeng.springboot.controller;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.houbb.sensitive.word.core.SensitiveWordHelper;
 import com.juguopeng.springboot.Service.BoothService;
 import com.juguopeng.springboot.Service.CommentService;
-import com.juguopeng.springboot.bean.Booth;
 import com.juguopeng.springboot.bean.Comment;
+import com.juguopeng.springboot.dto.CommentVO;
 import com.juguopeng.springboot.utlis.IPUtils;
 import com.juguopeng.springboot.utlis.Result;
 import com.juguopeng.springboot.utlis.ResultEnum;
@@ -14,6 +13,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -59,16 +59,20 @@ public class CommentController {
     }
 
 
-
     /**
      * @description 返回评论的数据
      * @return getComment
      */
 
     @GetMapping("/getComment")
-    public Result getComment(){
-        return ResultUtils.success(commentService.getComment());
+    public List<CommentVO> getComment(){
+        System.out.println("进入getComment");
+        List<CommentVO> comment = commentService.getComment();
+        for(CommentVO commentVO:comment)
+            System.out.println(commentVO);
+        return comment;
     }
+
 
 
 

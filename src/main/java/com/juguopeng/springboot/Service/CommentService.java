@@ -1,6 +1,7 @@
 package com.juguopeng.springboot.Service;
 
 import com.juguopeng.springboot.bean.Comment;
+import com.juguopeng.springboot.dto.CommentVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface CommentService {
      * @description  获取评论
      * @return comment
      */
-    List<String> getComment();
+    List<CommentVO> getComment();
 }

@@ -2,6 +2,7 @@ package com.juguopeng.springboot.ServiceImpl;
 
 import com.juguopeng.springboot.Service.CommentService;
 import com.juguopeng.springboot.bean.Comment;
+import com.juguopeng.springboot.dto.CommentVO;
 import com.juguopeng.springboot.mapper.CommentMapper;
 import jakarta.annotation.Resource;
 
@@ -27,7 +28,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<String> getComment()
+    public List<CommentVO> getComment()
     {
         return commentMapper.getComment();
     }

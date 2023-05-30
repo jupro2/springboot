@@ -32,12 +32,17 @@
 
 <script>
 import Submit from "@/components/icons/Submit.vue";
+import request from "@/utlis/request";
 
 export default {
   name: "BodyTwo",
     components:{
       Submit,
     },
+    //生命周期函数钩子
+    created() {
+    this.getComment();
+  },
     data(){
         return{
             click :'2000',
@@ -60,6 +65,22 @@ export default {
             ]
         }
     },
+  //TODO 解决数组问题
+    methods:{
+    getComment(){
+        request.get("/comment/getComment")
+            .then(response => {
+              console.log(response); // 在控制台中打印响应数据
+            })
+            .catch(error => {
+            console.log("错误，未知");
+              console.error(error); // 在控制台中打印错误信息
+            });
+      },
+
+    }
+   
+
 }
 </script>
 

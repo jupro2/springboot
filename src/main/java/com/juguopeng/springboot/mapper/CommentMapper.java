@@ -1,6 +1,7 @@
 package com.juguopeng.springboot.mapper;
 
 import com.juguopeng.springboot.bean.Comment;
+import com.juguopeng.springboot.dto.CommentVO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -24,8 +25,8 @@ public interface CommentMapper {
 
 
 
-    @Select("SELECT content FROM comment")
-    List<String> getComment();
+    @Select("SELECT id,content FROM comment")
+    List<CommentVO> getComment();
 
 
 }

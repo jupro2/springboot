@@ -15,7 +15,7 @@
 
     <div class="get-info">
         <div class="reply" v-for="(item,index) in comments" :key="index">
-            <div class="user"><span class="time">一小时前</span> {{item.user}}</div>
+            <div class="user"><span class="time">一小时前</span> A{{item.id}}</div>
             <br/>
             <div class="content">{{item.content}}</div>
             <hr/>
@@ -48,20 +48,6 @@ export default {
             click :'2000',
             rank :'1',
             comments: [
-                // parent 为回复的用户信息
-                {
-                    content: "奥利给，兄弟萌",
-                    user: "王尼玛",
-                },
-                {
-                    content: "一giao窝里giao giao",
-                    user: "小阿giao",
-                    //   第一层楼
-                },
-                {
-                    content: "谁TM买小米儿！",
-                    user: "铁蛋",
-                },
             ]
         }
     },
@@ -71,6 +57,7 @@ export default {
         request.get("/comment/getComment")
             .then(response => {
               console.log(response); // 在控制台中打印响应数据
+              this.comments=response;
             })
             .catch(error => {
             console.log("错误，未知");

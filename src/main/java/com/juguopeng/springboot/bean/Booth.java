@@ -14,12 +14,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booth {
+
     /**
-     * @param postId 记录窗口号
-     *
+     * postId 展厅id
+     * boothName 展厅名称
      */
+
     private Integer postId;
     private String boothName;
+    private Integer floodNumber;
     private Integer contentNumber;
     private Integer pickNumber;
     private Integer resId;

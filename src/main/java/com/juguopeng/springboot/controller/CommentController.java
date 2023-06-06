@@ -38,9 +38,9 @@ public class CommentController {
     @PostMapping("/insert")
     public Result insertComment(@RequestBody Comment comment, HttpServletRequest request) {
         comment.setUserIp(IPUtils.getIpAddr(request));
-        long timestamp = request.getDateHeader("Date");
-        Date sendTime = new Date(timestamp);
-        comment.setCreatedTime(sendTime);
+        //测试postman使用
+//        long timestamp = request.getDateHeader("Date");
+//        Date sendTime = new Date(timestamp);
 
         if (containsSensitiveWord(comment.getContent())) {
             return ResultUtils.error(ResultEnum.SENSITIVE_DATA.getCode(), ResultEnum.SENSITIVE_DATA.getMsg());
@@ -66,17 +66,11 @@ public class CommentController {
 
     @GetMapping("/getComment")
     public List<CommentVO> getComment(){
-        System.out.println("进入getComment");
         List<CommentVO> comment = commentService.getComment();
         for(CommentVO commentVO:comment)
             System.out.println(commentVO);
         return comment;
     }
-
-
-
-
-
 
     private boolean containsSensitiveWord(String content) {
         return SensitiveWordHelper.contains(content);

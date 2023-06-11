@@ -23,10 +23,12 @@ public interface CommentMapper {
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     int insertComment(Comment comment);
 
-
-
     @Select("SELECT id,content FROM comment")
     List<CommentVO> getComment();
+
+
+    @Select("SELECT id,content FROM comment WHERE postId=#{postId}")
+    List<CommentVO> getCommentByPostId(Integer postId);
 
 
 }

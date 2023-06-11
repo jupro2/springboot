@@ -18,7 +18,7 @@
            <el-icon><location /></el-icon>
            <span>一楼</span>
          </template> 
-          <el-menu-item v-for="(item,key) in getFloodFood.firstFlood" :key="item.id"  index="1-1">{{item.name}}</el-menu-item>
+          <el-menu-item v-for="(item,key) in getFloodFood.firstFlood" :key="item.id" :index="item.menuUrl" >{{item.name}}</el-menu-item>
 
        </el-sub-menu>
            
@@ -28,7 +28,7 @@
            <el-icon><location /></el-icon>
            <span>二楼</span>
          </template>
-         <el-menu-item v-for="(item,key) in getFloodFood.secondFlood" :key="item.id"  index="2-1">{{item.name}}</el-menu-item>
+         <el-menu-item v-for="(item,key) in getFloodFood.secondFlood" :key="item.id" :index="item.menuUrl" index="2-1">{{item.name}}</el-menu-item>
 
        </el-sub-menu>
 
@@ -37,7 +37,7 @@
            <el-icon><location /></el-icon>
            <span>三楼</span>
          </template>
-         <el-menu-item v-for="(item,key) in getFloodFood.thirdFlood" :key="item.id"  index="3-1">{{item.name}}</el-menu-item>
+         <el-menu-item v-for="(item,key) in getFloodFood.thirdFlood" :key="item.id" :index="item.menuUrl" index="3-1">{{item.name}}</el-menu-item>
        </el-sub-menu>
 
  

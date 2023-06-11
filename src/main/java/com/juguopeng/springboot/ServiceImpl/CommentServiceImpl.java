@@ -33,5 +33,10 @@ public class CommentServiceImpl implements CommentService {
         return commentMapper.getComment();
     }
 
+    @Override
+    public List<CommentVO> getCommentByPostId(Integer postId) {
+        return commentMapper.getCommentByPostId(postId);
+    }
+
 
 }

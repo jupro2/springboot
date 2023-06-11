@@ -23,4 +23,11 @@ public interface CommentService {
      * @return comment
      */
     List<CommentVO> getComment();
+
+    /**
+     * TODO
+     * @param postId
+     * @return List<CommentVO>
+     */
+    List<CommentVO> getCommentByPostId(Integer postId);
 }

@@ -40,42 +40,24 @@ export default {
           
     getFloodFood: {
       firstFlood: [
-        { id: 1, name: "茶泡饭" },
-        { id: 2, name: "鸡排饭" },
-        { id: 3, name: "掉渣饼" }
+        { id: 1, name: "茶泡饭",menuUrl:"/About/test" },
+        { id: 2, name: "鸡排饭",menuUrl:"/About" },
+        { id: 3, name: "掉渣饼",menuUrl:"/About" }
       ],
       secondFlood: [
-        { id: 1, name: "茶泡饭" },
-        { id: 2, name: "鸡排饭" },
-        { id: 3, name: "掉渣饼" }
+        { id: 4, name: "茶泡饭2",menuUrl:"/About"},
+        { id: 5, name: "鸡排饭2",menuUrl:"/About"},
+        { id: 6, name: "掉渣饼2",menuUrl:"/About" }
       ],
       thirdFlood: [
-        { id: 1, name: "茶泡饭" },
-        { id: 2, name: "鸡排饭" },
-        { id: 3, name: "掉渣饼" }
+        { id: 7, name: "茶泡饭3",menuUrl:"/About" },
+        { id: 8, name: "鸡排饭3",menuUrl:"/About" },
+        { id: 9, name: "掉渣饼3",menuUrl:"/About"}
       ]
+      
     }
-
-  
-            
-      //     firstFlood:[
-      //   {id:1,name:"茶泡饭"},
-      //   {id:2,name:"鸡排饭"},
-      //   {id:3,name:"掉渣饼"}
-      // ],
-      // secondFlood:[
-      //   {id:1,name:"茶泡饭"},
-      //   {id:2,name:"鸡排饭"},
-      //   {id:3,name:"掉渣饼"}
-      // ],
-      // thirdFlood:[
-      //   {id:1,name:"茶泡饭"},
-      //   {id:2,name:"鸡排饭"},
-      //   {id:3,name:"掉渣饼"}
-      // ],
-
-      }
-  },
+  }
+},
   methods:{
         handetresName(value){
             this.getresname=value

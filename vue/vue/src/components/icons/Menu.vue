@@ -20,7 +20,7 @@
 
       <div class="flex-grow" />
       <router-link to="/" style="color: black;text-decoration: none">
-        <el-menu-item index="1">排行榜</el-menu-item>
+        <el-menu-item index="1" >排行榜</el-menu-item>
       </router-link>
 
 
